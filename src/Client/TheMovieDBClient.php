@@ -12,27 +12,41 @@ class TheMovieDBClient
     public function __construct(
         private HttpClientInterface $client,
     ) {
-        $this->apiEndPoint = $_ENV['TMDB_API_END_POINT'];
+        $this->apiEndPoint      = $_ENV['TMDB_API_END_POINT'];
         $this->accessToken      = $_ENV['TMDB_ACCESS_TOKEN'];
     }
 
+    /**
+     * @description recupère la liste des films populaires
+     * @return array
+     */
     public function fetchMostPopularMovies(): array
     {
-        $params = [
-            "query" => $this->getQuery(),
-            "headers" => $this->getHeaders()
-        ];
-
         $response = $this->client->request(
             'GET',
             $this->apiEndPoint . 'discover/movie',
-            $params
+            $this->getDefaultParams()
         );
 
         return $response->toArray();
     }
 
-    private function getQuery(): array
+    /**
+     * @description recupère la liste des categories de film
+     * @return array
+     */
+    public function fetchGenreList(): array
+    {
+        $response = $this->client->request(
+            'GET',
+            $this->apiEndPoint . 'genre/movie/list',
+            $this->getDefaultParams()
+        );
+
+        return $response->toArray();
+    }
+
+    private function getDefaultQuery(): array
     {
         return [
             "language"      => "fr",
@@ -40,10 +54,18 @@ class TheMovieDBClient
         ];
     }
     
-    private function getHeaders(): array
+    private function getDefaultHeaders(): array
     {
         return [
             'Authorization' => 'Bearer ' . $this->accessToken,
         ];   
+    }
+    
+    private function getDefaultParams(): array
+    {
+        return [
+            "query"   => $this->getDefaultQuery(),
+            "headers" => $this->getDefaultHeaders()
+        ];
     }
 }

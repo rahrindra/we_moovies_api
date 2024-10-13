@@ -7,6 +7,7 @@ use App\Validator\UserDataValidator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 class ApiUserRegisterController extends AbstractController
@@ -19,6 +20,6 @@ class ApiUserRegisterController extends AbstractController
             $userRegisterManager->saveUser($userData);
         }
 
-        return new JsonResponse(['success' => true], 201);
+        return new JsonResponse(['success' => true], Response::HTTP_CREATED);
     }
 }
