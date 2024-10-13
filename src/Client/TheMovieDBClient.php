@@ -46,6 +46,21 @@ class TheMovieDBClient
         return $response->toArray();
     }
 
+    /**
+     * @description recupère les détails d'un film
+     * @return array
+     */
+    public function getMovieDetails(int $movieId): array
+    {
+        $response = $this->client->request(
+            'GET',
+            $this->apiEndPoint . 'movie/' . $movieId,
+            $this->getDefaultParams()
+        );
+
+        return $response->toArray();
+    }
+
     private function getDefaultQuery(): array
     {
         return [
@@ -58,6 +73,7 @@ class TheMovieDBClient
     {
         return [
             'Authorization' => 'Bearer ' . $this->accessToken,
+            'accept'        => 'application/json',
         ];   
     }
     

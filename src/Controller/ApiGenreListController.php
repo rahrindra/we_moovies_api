@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class ApiGenreListController extends AbstractController
 {
-    #[Route('/api/genre/list', name: 'app_api_genre_list')]
+    #[Route('/api/genre/list', name: 'app_api_genre_list', methods: ['GET'])]
     public function index(TMDBGenreManager $genreManager): JsonResponse
     {
         $genreList = $genreManager->getGenreList();
