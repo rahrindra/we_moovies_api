@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class ApiUserRegisterController extends AbstractController
 {
-    #[Route('/api/user/register', name: 'app_api_user_register', methods: ['POST'])]
+    #[Route('/api/user/register', name: 'api_user_register', methods: ['POST'])]
     public function index(RequestStack $requestStack, UserRegisterManager $userRegisterManager): JsonResponse
     {
         $userData = $requestStack->getCurrentRequest()?->getContent();
