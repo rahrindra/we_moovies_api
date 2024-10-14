@@ -4,7 +4,7 @@ namespace App\Client;
 
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-class TheMovieDBClient
+class TheMovieDBClient implements TMDBClientInterface
 {
     private string $apiEndPoint;
     private string $accessToken;
@@ -97,7 +97,7 @@ class TheMovieDBClient
         return [
             'Authorization' => 'Bearer ' . $this->accessToken,
             'accept'        => 'application/json',
-        ];   
+        ];
     }
     
     private function getDefaultParams(): array

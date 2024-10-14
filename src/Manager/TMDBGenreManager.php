@@ -4,12 +4,8 @@ namespace App\Manager;
 
 use App\Client\TheMovieDBClient;
 
-class TMDBGenreManager
+class TMDBGenreManager extends AbstractTMDBManager
 {
-    public function __construct(
-        private readonly TheMovieDBClient $theMovieDBClient,
-    ) {}
-
     public function getGenreList(): array
     {
         $theMovieList = $this->theMovieDBClient->fetchGenreList();

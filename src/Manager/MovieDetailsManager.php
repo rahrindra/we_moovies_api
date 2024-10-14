@@ -2,13 +2,8 @@
 
 namespace App\Manager;
 
-use App\Client\TheMovieDBClient;
-
-class MovieDetailsManager
+class MovieDetailsManager extends AbstractTMDBManager
 {
-    public function __construct(
-        private readonly TheMovieDBClient $theMovieDBClient,
-    ) {}
 
     public function getMovieDetails(int $movieId): array
     {
