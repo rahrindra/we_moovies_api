@@ -61,6 +61,29 @@ class TheMovieDBClient
         return $response->toArray();
     }
 
+    /**
+     * @description recherche des films
+     * @return array
+     */
+    public function searchMovie(string $keyword): array
+    {
+        $query = array_merge(
+            $this->getDefaultQuery(),
+            ['query' => $keyword]
+        );
+
+        $response = $this->client->request(
+            'GET',
+            $this->apiEndPoint . 'search/keyword',
+            [
+                'headers' => $this->getDefaultHeaders(),
+                'query' => $query
+            ]
+        );
+
+        return $response->toArray();
+    }
+
     private function getDefaultQuery(): array
     {
         return [

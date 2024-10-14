@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class ApiUserRegisterController extends AbstractController
 {
-    #[Route('/api/user/register', name: 'api_user_register', methods: ['GET'])]
+    #[Route('/api/user/register', name: 'api_user_register', methods: ['POST'])]
     public function index(RequestStack $requestStack, UserRegisterManager $userRegisterManager): JsonResponse
     {
         $userData = $requestStack->getCurrentRequest()?->getContent();
