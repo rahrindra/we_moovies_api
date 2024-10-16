@@ -18,7 +18,7 @@ COPY . .
 
 RUN composer install
 
-RUN php bin/console lexik:jwt:generate-keypair --no-interaction
+RUN php bin/console lexik:jwt:generate-keypair --no-interaction --overwrite
 
 RUN chown -R www-data:www-data /var/www
 
